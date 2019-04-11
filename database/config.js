@@ -121,4 +121,5 @@ module.exports = {
   Account,
   Artist,
   Listing,
+  sequelize
 };

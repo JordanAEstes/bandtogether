@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const { Account, Artist, Listing } = require('./config.js');
 
 
@@ -60,6 +61,26 @@ const makeSearchObject = (account) => {
  * @returns {Promise} 
  */
 const makeAccount = (accDetails) => {
+<<<<<<< HEAD
+  console.log(accDetails)
+  accDetails.salt = bcrypt.genSaltSync(10);
+  accDetails.password = bcrypt.hashSync(accDetails.password, accDetails.salt);
+  return Account.create(accDetails);
+
+  // const {username, password, salt, email, name, solo} = accDetails;
+  // if(!username || !password || !salt || !name || !solo || !email) {
+  //   console.error("Attempted to make an account without required fields.")
+  //   return;
+  // }
+  // const artistObj = makeObject(accDetails, ['name', 'solo'].concat(optionalProfileValues))
+  // // makes account
+  // return Account.create({ username, password, salt, email })
+  // // makes artist
+  // .then(account => Artist.create(artistObj)
+  //   // associates the new artist and account
+  //   .then(artist => artist.setAccount(account.id))
+  // )
+=======
   const {username, password, salt, email, name, solo} = accDetails;
   if(!username || !password || !salt || !name || solo === undefined || !email) {
     console.error(`Attempted to make an account without required fields. username: ${username}, password: ${password},
@@ -79,6 +100,7 @@ const makeAccount = (accDetails) => {
     // associates the new artist and account
     .then(artist => artist.setAccount(account.id))
   )
+>>>>>>> 08ab87c7390d514a2157040490ba6e3cfebb6917
 };
 
 
